@@ -5,6 +5,7 @@ export const load = async ({ params, depends }) => {
 	const { id } = params;
 
 	const orderResponse = await fetch(`${env.ORDER_API_URL}/orders/${id}`);
+	console.log(orderResponse);
 	const order = await orderResponse.json();
 
 	return { order };
