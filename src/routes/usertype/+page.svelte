@@ -4,9 +4,7 @@
 </svelte:head>
 
 <section>
-	<h1 style="text-align: left; margin-bottom: 20px;">
-		Begin by selecting your role:
-	</h1>
+	<h1 style="text-align: left; margin-bottom: 20px;">Begin by selecting your role:</h1>
 
 	<table style="width: 60%;">
 		<thead>
@@ -30,5 +28,4 @@
 			</tr>
 		</tbody>
 	</table>
-
 </section>

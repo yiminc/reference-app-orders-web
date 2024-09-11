@@ -21,7 +21,7 @@
 				<p class="location">
 					{#if fulfillment?.location}
 						<i>{fulfillment.location}</i>
-					{:else if fulfillment?.status == "cancelled"}
+					{:else if fulfillment?.status == 'cancelled'}
 						<strong>Unavailable</strong>
 					{:else}
 						<strong>Action Required</strong>

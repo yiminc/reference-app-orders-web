@@ -6,7 +6,9 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	try {
 		const response = await fetch(`${env.ORDER_API_URL}/batch-orders/${id}`);
-		return json({ status: 'ok', body: response });
+		const promotion = await response.json();
+		console.log('Promotion: ', promotion);
+		return json({ status: 'ok', promotion });
 	} catch (e) {
 		return json({ status: 'error' });
 	}
