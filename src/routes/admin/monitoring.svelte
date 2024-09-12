@@ -9,6 +9,8 @@
 	let billingData: number[] = [];
 	let batchData: number[] = [];
 
+	let refresh = 0;
+
 	const saveToLocalStorage = (
 		labels: string[],
 		orderData: number[],
@@ -32,6 +34,11 @@
 	};
 
 	const clearLocalStorage = () => {
+		labels = [];
+		orderData = [];
+		shipmentData = [];
+		billingData = [];
+		batchData = [];
 		localStorage.removeItem('labels');
 		localStorage.removeItem('orderData');
 		localStorage.removeItem('shipmentData');
@@ -81,28 +88,29 @@
 
 	const onStopMonitoring = () => {
 		clearInterval(fetchInterval);
+		fetchInterval = null;
 	};
 
 	const onClearMonitoring = () => {
 		clearInterval(fetchInterval);
+		fetchInterval = null;
 		clearLocalStorage();
-		window.location.reload();
+		refresh = Date.now();
 	};
 </script>
 
-<div class="flex flex-col gap-4 items-center justify-start">
-	<div class="flex flex-col md:flex-row justify-between w-full items-center">
-		<h1>Backlog Size</h1>
-		<div class="flex gap-4 items-center">
-			<a href="/admin">Back to Store Manager</a>
-			<button on:click={onStartMonitoring} class="w-auto" disabled={!!fetchInterval}>Start</button>
-			<button on:click={onStopMonitoring} class="w-auto" disabled={!fetchInterval}>Stop</button>
-			<button on:click={onClearMonitoring} class="w-auto">Clear</button>
-		</div>
-	</div>
-	<div class="flex flex-col gap-2 w-full">
-		<div class="w-full h-[600px] p-4 flex flex-col gap-4 bg-white border border-black rounded px-12 items-center">
-			<Chart {labels} {orderData} {shipmentData} {billingData} />
+<div class="flex flex-col gap-4 items-center justify-start w-full">
+  <div class="w-full p-4 flex flex-col gap-4 bg-white border border-black rounded">
+    <div class="flex justify-between w-full items-center">
+      <h1>Backlog Size</h1>
+      <div class="flex gap-4 items-center">
+        <button on:click={onStartMonitoring} class="w-auto" disabled={!!fetchInterval}>Start</button>
+        <button on:click={onStopMonitoring} class="w-auto" disabled={!fetchInterval}>Stop</button>
+        <button on:click={onClearMonitoring} class="w-auto">Clear</button>
+      </div>
+    </div>
+		<div class="w-full h-[400px]">
+			<Chart {labels} {orderData} {shipmentData} {billingData} {refresh} />
 		</div>
 	</div>
 </div>

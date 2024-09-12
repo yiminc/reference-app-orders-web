@@ -7,6 +7,7 @@
 	export let shipmentData: number[] = [];
 	export let billingData: number[] = [];
 	export let batchData: number[] = [];
+	export let refresh: number;
 
 	let container: HTMLCanvasElement;
 	let chart: typeof Chart;
@@ -35,13 +36,13 @@
 				borderColor: 'rgb(128, 64, 192)',
 				tension: 0.1
 			},
-			{
-				label: 'Promotions',
-				data: batchData,
-				fill: false,
-				borderColor: 'rgb(128, 192, 75)',
-				tension: 0.1
-			}
+			// {
+			// 	label: 'Promotions',
+			// 	data: batchData,
+			// 	fill: false,
+			// 	borderColor: 'rgb(128, 192, 75)',
+			// 	tension: 0.1
+			// }
 		]
 	};
 	$: config = {
@@ -78,6 +79,14 @@
 	});
 
 	$: addData(labels);
+
+	$: {
+		if (refresh) {
+			chart.destroy();
+			const ctx = container.getContext('2d');
+			chart = new Chart(ctx, config);
+		}
+	}
 
 	function addData(labels) {
 		if (chart) {
