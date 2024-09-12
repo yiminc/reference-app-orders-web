@@ -39,13 +39,6 @@
 
 <div class="flex flex-col gap-4 items-center justify-start">
 	<h1>Store Manager</h1>
-	<!-- <div class="w-full p-4 flex flex-col gap-4 bg-white border border-black rounded">
-		<h3 class="text-xl font-bold">Analytics</h3>
-		<div class="flex justify-between">
-			<p>Monitor backlog of orders, deliveries and payments</p>
-			<button on:click={() => goto('/admin/monitor')} class="w-48">Monitor</button>
-		</div>
-	</div> -->
 	<div class="w-full gap-2 flex flex-col xl:flex-row">
 		<Monitoring />
 		<div class="flex flex-col gap-2 w-full">

@@ -22,13 +22,13 @@
 				borderColor: 'rgb(75, 192, 192)',
 				tension: 0.1
 			},
-			{
-				label: 'Shipments',
-				data: shipmentData,
-				fill: false,
-				borderColor: 'rgb(192, 75, 75)',
-				tension: 0.1
-			},
+			// {
+			// 	label: 'Shipments',
+			// 	data: shipmentData,
+			// 	fill: false,
+			// 	borderColor: 'rgb(192, 75, 75)',
+			// 	tension: 0.1
+			// },
 			{
 				label: 'Billing',
 				data: billingData,
