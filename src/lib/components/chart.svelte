@@ -7,13 +7,13 @@
 	export let shipmentData: number[] = [];
 	export let billingData: number[] = [];
 	export let batchData: number[] = [];
-	export let refresh: number;
 
 	let container: HTMLCanvasElement;
 	let chart: typeof Chart;
 
 	$: data = {
 		labels,
+		responsive: true,
 		datasets: [
 			{
 				label: 'Orders',
@@ -79,14 +79,6 @@
 	});
 
 	$: addData(labels);
-
-	$: {
-		if (refresh) {
-			chart.destroy();
-			const ctx = container.getContext('2d');
-			chart = new Chart(ctx, config);
-		}
-	}
 
 	function addData(labels) {
 		if (chart) {

@@ -9,8 +9,6 @@
 	let billingData: number[] = [];
 	let batchData: number[] = [];
 
-	let refresh = 0;
-
 	const saveToLocalStorage = (
 		labels: string[],
 		orderData: number[],
@@ -95,11 +93,11 @@
 		clearInterval(fetchInterval);
 		fetchInterval = null;
 		clearLocalStorage();
-		refresh = Date.now();
+		window.location.reload();
 	};
 </script>
 
-<div class="flex flex-col gap-4 items-center justify-start w-full">
+<div class="flex flex-col gap-4 items-center justify-start w-full xl:max-w-[56vw]">
   <div class="w-full p-4 flex flex-col gap-4 bg-white border border-black rounded">
     <div class="flex justify-between w-full items-center">
       <h1>Backlog Size</h1>
@@ -109,8 +107,8 @@
         <button on:click={onClearMonitoring} class="w-auto">Clear</button>
       </div>
     </div>
-		<div class="w-full h-[400px]">
-			<Chart {labels} {orderData} {shipmentData} {billingData} {refresh} />
+		<div class="w-full h-[480px]">
+			<Chart {labels} {orderData} {shipmentData} {billingData} />
 		</div>
 	</div>
 </div>
